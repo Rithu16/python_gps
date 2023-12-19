@@ -1,0 +1,38 @@
+import random
+import time
+
+class GPSVehicle:
+    def __init__(self, vehicle_id):
+        self.vehicle_id = vehicle_id
+        self.latitude = 0.0
+        self.longitude = 0.0
+
+    def update_location(self):
+        # Simulate GPS data update
+        self.latitude += random.uniform(-0.1, 0.1)
+        self.longitude += random.uniform(-0.1, 0.1)
+
+    def get_location(self):
+        return self.latitude, self.longitude
+
+def main():
+    # Create a GPS vehicle instance
+    vehicle = GPSVehicle(vehicle_id="ABC123")
+
+    try:
+        while True:
+            # Update and get the current location
+            vehicle.update_location()
+            current_location = vehicle.get_location()
+
+            # Display the current location
+            print(f"Vehicle {vehicle.vehicle_id} Location: Latitude {current_location[0]}, Longitude {current_location[1]}")
+
+            # Simulate a delay between updates
+            time.sleep(1)
+
+    except KeyboardInterrupt:
+        print("GPS tracking stopped.")
+
+if __name__ == "__main__":
+    main()
